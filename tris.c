@@ -36,7 +36,7 @@ void game(){
             do {
                 printf("Inserisci una riga >>> ");
                 scanf("%d", &riga);
-                printf("\033[A\33[2K\r");
+                printf("\033[A\33[2K\r"); //cancella la riga corrente
             } while (riga < 1 || riga > 3);
 
             do {
@@ -47,13 +47,10 @@ void game(){
 
             if (tris[riga-1][colonna-1] != '-'){
                 occupato++;
+                printf("Posizione già occupata");
             }
             else {
                 tris[riga-1][colonna-1] = turno%2 == 0 ? 'X' : 'O';
-            }
-
-            if (occupato){
-                printf("Posizione già occupata");
             }
 
         } while(occupato);
@@ -98,8 +95,8 @@ void print_tris(){
 
     int riga, colonna;
 
-    printf("\e[1;1H\e[2J"); //pulisce lo schermo
-
+    printf("\e[1;1H\e[2J");
+    
     for (riga = 0; riga < 3; riga++){
         printf("\t");
         for (colonna = 0; colonna < 3; colonna++){
